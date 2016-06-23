@@ -92,6 +92,7 @@
 
 					$element.owlCarousel(options);
 					owlCarousel = $element.data('owl.carousel');
+					scope.index = owlCarousel._current;
 
           $element.on("changed.owl.carousel", function(e) {
 						$timeout(function() {
@@ -100,8 +101,14 @@
 						}, options.navSpeed);
           });
           return scope.$watch('index', function (newVal, oldVal) {
-						if (currentIndex != null && newVal != null && newVal !== currentIndex) {
-              owlCarousel.to(newVal, 1, true);
+						if (newVal != oldVal && currentIndex != null && newVal != null && newVal !== currentIndex) {
+							if (newVal - oldVal == 1) {
+								owlCarousel.next();
+							} else if (newVal - oldVal == -1) {
+								owlCarousel.prev();
+							} else {
+              	owlCarousel.to(newVal, 1, true);
+							}
 						}
           });
         }
