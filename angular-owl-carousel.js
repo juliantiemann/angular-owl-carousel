@@ -47,6 +47,7 @@
         var getOwlOptions = function() {
 					var options = {
 						nav: true,
+						dots: false,
 						navText: ['',''],
 						freeScroll: false
 					};
