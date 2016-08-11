@@ -23,6 +23,7 @@
       scope: {
         index: "=owlIndex",
         options: "=owlOptions",
+				owlList: "=",
 				itemsLoaded: "="
       },
 			link: function (scope, element, attributes, controller) {
@@ -112,7 +113,12 @@
 							}
 						}
           });
-        }
+				}
+
+				scope.$watch("owlList", function(newVal) {
+					$element.owlCarousel('destroy');
+					$element.owlCarousel(angular.extend(options, getOwlOptions()));
+				})
 
 				if(scope.itemsLoaded !== undefined) {
 					scope.$watch('itemsLoaded', function (itemsLoaded) {
