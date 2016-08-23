@@ -115,10 +115,12 @@
           });
 				}
 
-				scope.$watch("owlList", function(newVal) {
-					$element.owlCarousel('destroy');
-					$element.owlCarousel(angular.extend(options, getOwlOptions()));
-				})
+				if (attributes.owlList) {
+					scope.$watch("owlList", function(newVal) {
+						$element.owlCarousel('destroy');
+						$element.owlCarousel(angular.extend(options, getOwlOptions()));
+					});
+				}
 
 				if(scope.itemsLoaded !== undefined) {
 					scope.$watch('itemsLoaded', function (itemsLoaded) {
