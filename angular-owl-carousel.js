@@ -70,6 +70,7 @@
         }
 
 				var initialize = function() {
+					$element.owlCarousel('destroy');
 					angular.extend(options, getOwlOptions());
           var currentIndex;
           if (scope.index != null) {
